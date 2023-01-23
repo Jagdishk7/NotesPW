@@ -1,6 +1,6 @@
 .header
 {
-    background-color: #ffef43;
+    background-color: #ffe143;
     height: 70px;
     display: flex;
     flex-direction: row;
@@ -8,7 +8,7 @@
 }
 .header .logo
 {
-    position: fixed;
+    position: absolute;
     left: 70px;
     
 }
@@ -39,7 +39,7 @@
 .header .search-bar
 {
     display: flex;
-    position:fixed;
+    position:absolute;
     right: 70px;
     background-color: var(--bg-black-100);
     width: 400px;
