@@ -1,0 +1,14 @@
+.ham-btn {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  padding: 0.2rem;
+  top: 80px;
+  left: 10px;
+  z-index: -1;
+}
