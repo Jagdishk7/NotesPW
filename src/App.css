@@ -1,6 +1,18 @@
 /* ================ Fonts ================ */
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@200;300;500;600;700&display=swap");
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff7ccc1;
+  border-radius: 2px;
+}
 
 :root {
   --bg-black-900: #f2f2fc;
@@ -12,8 +24,7 @@
   --transition: all 200ms linear;
 }
 
-*
-{
+* {
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -26,7 +37,8 @@ body {
   font-family: "poppins" sans-serif;
 }
 .row {
+  /* border: 2px solid black; */
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
 }
