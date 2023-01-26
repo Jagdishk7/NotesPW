@@ -43,6 +43,26 @@ const Home = () => {
           <Note />
           <Note />
           <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
+          <Note />
         </div>
       </div>
     </>

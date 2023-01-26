@@ -1,16 +1,14 @@
 import React from "react";
 import "./Header.css";
-import { FaSearch } from "react-icons/fa";
-import { GlobalContext } from "../../context/context";
+import { FaBook, FaSearch } from "react-icons/fa";
 
 const Header = () => {
-  const { onlySearchIcon } = GlobalContext();
-
   return (
     <div className="header">
       <div className="logo">
         <a href="/">
-          <i class="bx bxs-book logo-icon"></i>
+          {/* <i class="bx bxs-book logo-icon"></i> CDNs are not good at production level */}
+          <FaBook className="logo-icon" />
           <p>
             <span>N</span>otes PW
           </p>
@@ -22,7 +20,7 @@ const Header = () => {
           className="search"
           name=""
           id=""
-          placeholder="Search Notes"
+          placeholder="Search note by title"
         />
         <button className="btn-search" type="submit">
           <FaSearch />

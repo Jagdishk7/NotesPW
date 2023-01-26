@@ -3,7 +3,9 @@ import React, { useState, useContext, useEffect } from "react";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(
+    window.innerWidth < "640" ? false : true
+  );
   const [onlySearchIcon, setOnlySearchIcon] = useState(false);
   const closeSidebar = () => {
     setSidebarOpen(false);
@@ -13,25 +15,21 @@ const AppProvider = ({ children }) => {
     setSidebarOpen(true);
   };
 
-  useEffect(() => {
-    // const windowWidth = window.innerWidth;
-    // if (windowWidth < "640") {
-    //   setSidebarOpen(false);
-    // }
-    const checkSidebar = () => {
-      if (window.innerWidth < "640") {
-        setSidebarOpen(false);
-        setOnlySearchIcon(true);
-      } else {
-        setSidebarOpen(true);
-      }
-    };
-    window.addEventListener("resize", checkSidebar);
+  // useEffect(() => {
+  //   const checkSidebar = () => {
+  //     if (window.innerWidth < "640") {
+  //       setSidebarOpen(false);
+  //       setOnlySearchIcon(true);
+  //     } else {
+  //       setSidebarOpen(true);
+  //     }
+  //   };
+  //   window.addEventListener("resize", checkSidebar);
 
-    return () => {
-      window.removeEventListener("resize", checkSidebar);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("resize", checkSidebar);
+  //   };
+  // }, []);
 
   return (
     <AppContext.Provider

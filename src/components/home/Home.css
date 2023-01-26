@@ -51,7 +51,7 @@
   font-size: 1.5rem;
 }
 .card {
-  min-width: 200px;
+  min-width: 220px;
   width: 100%;
   /* height: 100%; */
   border-radius: 8px;
@@ -80,9 +80,10 @@
 .note:hover,
 .new-note:hover {
   box-shadow: 0 0 4px #00000083;
+  transform: scale(1.05);
 }
 .new-note:active {
-  transform: scale(0.98);
+  transform: scale(1);
   box-shadow: 0 0 2px #00000083;
 }
 
@@ -178,5 +179,10 @@
 @media screen and (min-width: 1240px) {
   .home-content {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1700px) {
+  .home-content {
+    grid-template-columns: repeat(5, 1fr);
   }
 }
