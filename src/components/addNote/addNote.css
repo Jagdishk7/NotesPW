@@ -1,6 +1,7 @@
 :root {
   --primaryFont: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  --clearTransition: all 100ms linear;
 }
 
 .addNote-container {
@@ -11,10 +12,11 @@
 }
 
 .buttons {
-  padding: 0.5rem 5rem;
+  padding: 0.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: var(--clearTransition);
 }
 
 .btn {
@@ -27,7 +29,7 @@
   font-weight: bold;
   box-shadow: 0 0 2px #000;
   color: #504e70;
-  transition: all 100ms linear;
+  transition: var(--clearTransition);
 }
 
 .btn:active {
@@ -38,15 +40,16 @@
 .input-section {
   /* border: 2px solid black; */
   border-radius: 10px;
-  width: 75%;
+  width: 90%;
   margin: auto;
-  padding: 2rem 3rem;
+  padding: 2rem 1rem;
   min-height: 80%;
-  background-color: rgb(244, 247, 255);
+  background-color: #f4f7ff;
 }
 
 .heading {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   margin: 0.25rem 0;
@@ -55,13 +58,13 @@
 .inps,
 .noteContent {
   /* border: 1px solid #000; */
-  border: none;
   box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
-  padding: 0.2rem 0.4rem;
+  padding: 0.6rem 0.4rem;
   outline: none;
-  border-radius: 3px;
-  font-size: 1.05rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
   transition: all 50ms linear;
+  letter-spacing: 1px;
 }
 
 .inps:focus,
@@ -74,15 +77,80 @@
 }
 
 .noteTitle {
-  width: 69%;
+  width: 100%;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
 }
 
 .noteCategory {
-  width: 30.5%;
+  width: 100%;
+  font-weight: bold;
 }
 
 .noteContent {
   resize: none;
   width: 100%;
   min-height: 300px;
+}
+
+@media screen and (min-width: 750px) {
+  .buttons {
+    padding: 0.5rem 5rem;
+  }
+  .input-section {
+    width: 75%;
+    padding: 2rem 3rem;
+  }
+}
+@media screen and (min-width: 480px) {
+  .heading {
+    flex-direction: row;
+  }
+
+  .inps,
+  .noteContent {
+    /* border: 1px solid #000; */
+    border: none;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border-radius: 3px;
+    font-size: 1.05rem;
+    transition: all 50ms linear;
+  }
+
+  .noteTitle {
+    width: 69%;
+    margin-bottom: 0;
+  }
+
+  .noteCategory {
+    width: 30.5%;
+  }
+}
+
+/* 
+  ===============
+  classes for user while writing
+  ===============
+*/
+.buttons-hidden {
+  visibility: hidden;
+  transition: var(--clearTransition);
+}
+
+.input-section-transparent {
+  background-color: #fff;
+  transition: var(--clearTransition);
+}
+
+.inps-writing,
+.noteContent-writing {
+  box-shadow: none;
+  transition: var(--clearTransition);
+}
+.inps-writing:focus,
+.noteContent-writing:focus {
+  box-shadow: none;
+  transition: var(--clearTransition);
 }

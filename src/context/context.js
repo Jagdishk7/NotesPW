@@ -7,12 +7,18 @@ const AppProvider = ({ children }) => {
     window.innerWidth < "640" ? false : true
   );
   const [onlySearchIcon, setOnlySearchIcon] = useState(false);
+  const [writing, setWriting] = useState(false);
+
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
 
   const openSidebar = () => {
     setSidebarOpen(true);
+  };
+
+  const clearPage = () => {
+    setWriting(true);
   };
 
   // useEffect(() => {
@@ -36,8 +42,11 @@ const AppProvider = ({ children }) => {
       value={{
         onlySearchIcon,
         sidebarOpen,
+        writing,
+        setWriting,
         closeSidebar,
         openSidebar,
+        clearPage,
       }}
     >
       {children}

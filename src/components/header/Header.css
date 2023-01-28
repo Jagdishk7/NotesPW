@@ -7,7 +7,14 @@
   align-items: center;
   position: fixed;
   z-index: +2;
+  transition: all 200ms linear;
 }
+
+.header-hidden {
+  visibility: hidden;
+  transition: all 200ms linear;
+}
+
 .header .logo {
   position: absolute;
   left: 70px;

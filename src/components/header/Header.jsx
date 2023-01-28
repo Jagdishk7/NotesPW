@@ -1,10 +1,13 @@
 import React from "react";
 import "./Header.css";
 import { FaBook, FaSearch } from "react-icons/fa";
+import { GlobalContext } from "../../context/context";
 
 const Header = () => {
+  const { writing } = GlobalContext();
+
   return (
-    <div className="header">
+    <div className={`${writing ? "header header-hidden" : "header "}`}>
       <div className="logo">
         <a href="/">
           {/* <i class="bx bxs-book logo-icon"></i> CDNs are not good at production level */}
