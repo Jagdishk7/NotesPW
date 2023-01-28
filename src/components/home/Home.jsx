@@ -33,7 +33,10 @@ const Home = () => {
           <h1 className="home-title">Welcome User...</h1>
         </header>
         <div className="home-content">
-          <Link className="new-note card">
+          {/* ===========
+            Add note btn
+          ============ */}
+          <Link to="/addnote" className="new-note card">
             <i className="uil uil-plus"></i>
           </Link>
           <Note />

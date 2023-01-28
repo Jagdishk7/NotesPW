@@ -22,6 +22,8 @@
   --text-black-700: #504e70;
   --secondary-color: #ddebff;
   --transition: all 200ms linear;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 * {
