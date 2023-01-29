@@ -30,6 +30,7 @@
 .sidebar-heading {
   transition: var(--transition);
   font-size: 1.1rem;
+  color: #302e4d;
 }
 
 .closeSidebar-btn {
@@ -58,6 +59,7 @@
   padding: 8px 3px;
   transition: var(--transition);
   border-radius: 3px;
+  list-style: none;
 }
 
 .category-list li:hover {

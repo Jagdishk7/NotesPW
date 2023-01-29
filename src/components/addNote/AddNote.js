@@ -1,4 +1,5 @@
-import React from "react";
+import React, { createContext } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { FaArrowLeft, FaSave } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -6,7 +7,21 @@ import { GlobalContext } from "../../context/context";
 import "./addNote.css";
 
 const AddNote = () => {
-  const { writing, setWriting, clearPage } = GlobalContext();
+  // imported required states and function from context
+  const {
+    writing,
+    setWriting,
+    clearPage,
+    titleValue,
+    categValue,
+    contentValue,
+    setTitleValue,
+    setCategValue,
+    setContentValue,
+    saveNote,
+  } = GlobalContext();
+
+  // It shows all the header and background when the mouse moves
   useEffect(() => {
     const setPageBack = () => {
       setWriting(false);
@@ -20,13 +35,17 @@ const AddNote = () => {
 
   return (
     <section className="addNote-container">
-      {/* buttons */}
+      {/* Double classes are used. When user type everything disappears and come back when the mouse moves from its position */}
+      {/* buttons. used links to navigate also */}
       <div className={`${writing ? "buttons buttons-hidden" : "buttons "}`}>
+        {/* back button */}
         <Link to="/" className="btn">
           <FaArrowLeft />
           Back
         </Link>
-        <Link to="" className="btn">
+
+        {/* save button */}
+        <Link to="/" className="btn" onClick={saveNote}>
           <FaSave />
           Save
         </Link>
@@ -46,7 +65,8 @@ const AddNote = () => {
             }`}
             name="noteTitle"
             placeholder="Enter title"
-            onChange={clearPage}
+            onChange={(e) => (clearPage(), setTitleValue(e.target.value))}
+            value={titleValue}
           />
           <input
             type="text"
@@ -55,7 +75,8 @@ const AddNote = () => {
             }`}
             name="noteCategory"
             placeholder="Enter category"
-            onChange={clearPage}
+            onChange={(e) => (clearPage(), setCategValue(e.target.value))}
+            value={categValue}
           />
         </div>
         <div className="content">
@@ -66,7 +87,8 @@ const AddNote = () => {
             }`}
             placeholder="Your note..."
             id="noteContent"
-            onChange={clearPage}
+            onChange={(e) => (clearPage(), setContentValue(e.target.value))}
+            value={contentValue}
           ></textarea>
         </div>
       </div>

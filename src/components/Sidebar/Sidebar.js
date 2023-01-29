@@ -12,12 +12,7 @@ import {
 import { GlobalContext } from "../../context/context";
 
 const Sidebar = () => {
-  const { sidebarOpen, closeSidebar } = GlobalContext();
-  // const [openSidebar, setOpenSidebar] = useState(true);
-
-  // const closeSidebar = () => {
-  //   setOpenSidebar(!openSidebar);
-  // };
+  const { sidebarOpen, closeSidebar, categoryList } = GlobalContext();
 
   return (
     <div className={`${sidebarOpen ? "sidebar" : "sidebar close-sidebar"}`}>
@@ -28,15 +23,10 @@ const Sidebar = () => {
             <FaTimes />
           </span>
         </header>
-        {/* list items will be added dynamically */}
-        <ul className="category-list">
-          <li>Category</li>
-          <li>Category</li>
-          <li>Category</li>
-          <li>Category</li>
-        </ul>
+        {/* category list is brought from context and set up dynamically */}
+        <ul className="category-list">{categoryList}</ul>
       </section>
-      {/* social media links */}
+      {/* social media links. href note set yet. */}
       <footer className="social-icons">
         <a href="/">
           <FaTwitter />

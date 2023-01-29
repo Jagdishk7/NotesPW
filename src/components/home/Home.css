@@ -65,6 +65,7 @@
   align-items: center;
   color: black;
   transition: all 100ms linear;
+  font-size: 3rem;
 }
 
 .uil-plus {
@@ -80,11 +81,10 @@
 .note:hover,
 .new-note:hover {
   box-shadow: 0 0 4px #00000083;
-  transform: scale(1.05);
 }
 .new-note:active {
-  transform: scale(1);
-  box-shadow: 0 0 2px #00000083;
+  transform: scale(0.99);
+  box-shadow: none;
 }
 
 .note-img {
@@ -127,27 +127,38 @@
 
 .note-description {
   font-size: 10px;
+  height: 35%;
 }
 
-.note-about button {
-  /* margin-top: 5px; */
-  padding: 5px 15px;
+.select-btn {
+  background-color: #ddebff;
+  color: #000000;
+  padding: 0rem 0.5rem;
   cursor: pointer;
-  border: none;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px #2d2b365e;
+  box-shadow: 0px 0px 1px #2d2b36;
   transition: all 50ms linear;
 }
-.note-about button:active {
-  transform: scale(0.95);
-  box-shadow: none;
+
+.deleteNote-btn {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.15rem;
+  border-radius: 4px;
+  color: #302e4d;
 }
 
-.delete-icon {
-  /* margin-top: 5px; */
-  margin-left: 90px;
-  font-size: 20px;
-  cursor: pointer;
+.deleteNote-btn:hover {
+  box-shadow: 0px 0px 3px #2d2b365e;
+}
+.select-btn:active,
+.deleteNote-btn:active {
+  transform: scale(0.95);
+  box-shadow: none;
 }
 
 @media screen and (min-width: 360px) {
