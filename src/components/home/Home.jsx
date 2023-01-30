@@ -45,7 +45,7 @@ const Home = () => {
           {/* ===========
             Add note btn
           ============ */}
-          <Link to="/addnote" className="new-note card">
+          <Link to="/addnote" className="new-note card" title="Add a new note">
             {/* I've removed every icons which was imported using cdn because in a random utube video I heared that cdn gets problematic in production */}
             <FaPlus />
           </Link>

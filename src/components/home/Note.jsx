@@ -4,7 +4,16 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
-  // console.log(noteContent.length);
+  const noteTitleShrinker = (title) => {
+    const noteTitleArr = title.split("");
+
+    if (noteTitleArr.length > "14") {
+      let titleShorter = noteTitleArr.slice(0, 15).join("");
+      return titleShorter + ".. ";
+    } else {
+      return title;
+    }
+  };
 
   const noteDescMaker = (content) => {
     const noteDescArr = content.split("");
@@ -17,7 +26,7 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
   };
 
   return (
-    <div className="note card">
+    <div className="note card" title={noteTitle}>
       {/* ========== Note Card Start ========== */}
       <div className="note-img">
         {/* ========== Note Image Start ========== */}
@@ -33,14 +42,14 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
       </div>
       <div className="note-about">
         {/* ========== Note About ========== */}
-        <div className="row">
+        <header className="row noteHeader">
           <div className="note-title">
-            <strong>{noteTitle}</strong>
+            <strong>{noteTitleShrinker(noteTitle)}</strong>
           </div>
           <div className="note-category">
             <em>*{noteCategory}</em>
           </div>
-        </div>
+        </header>
         <div className="note-description">{noteDescMaker(noteContent)}</div>
         <div className="row">
           {/* changed from btn to link so we can navigate to detail pages */}

@@ -49,7 +49,7 @@
 }
 
 .category-list {
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 0.5rem;
   height: 70vh;
 }

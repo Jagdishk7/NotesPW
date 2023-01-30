@@ -36,7 +36,7 @@ const AppProvider = ({ children }) => {
   });
 
   // changing categories array into set for unique values and state for managing dynamic categories in sidebar
-  const categoriesSet = new Set(sidebarCategories);
+  const categoriesSet = new Set(["All notes", ...sidebarCategories]);
   const [categories, setCategories] = useState(Array.from(categoriesSet));
 
   const categoryList = categories.map((category, i) => {
@@ -67,6 +67,9 @@ const AppProvider = ({ children }) => {
       };
       setNoteList([...noteList, noteObj]);
       setCategValue(Array.from(categoriesSet));
+      setTitleValue("");
+      setCategValue("");
+      setContentValue("");
     }
   };
 
