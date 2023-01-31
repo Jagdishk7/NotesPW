@@ -97,6 +97,8 @@ const AppProvider = ({ children }) => {
     setNoteList(newNoteList);
   };
 
+  // function to find particular note
+
   // Storing note data in local storage everytime when the notelist changes. and the notelist changes when user add a note and save it.
   useEffect(() => {
     localStorage.setItem("noteList", JSON.stringify(noteList));

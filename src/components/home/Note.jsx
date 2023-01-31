@@ -26,11 +26,7 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
   };
 
   return (
-    <Link
-      to={`/note/${id}`}
-      className="note card"
-      title={`Title: ${noteTitle}`}
-    >
+    <div className="note card" title={`Title: ${noteTitle}`}>
       {/* ========== Note Card Start ========== */}
       <div className="note-img">
         {/* ========== Note Image Start ========== */}
@@ -57,14 +53,16 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
         <div className="note-description">{noteDescMaker(noteContent)}</div>
         <div className="row">
           {/* changed from btn to link so we can navigate to detail pages */}
-          <Link className="select-btn">Select</Link>
+          <Link to={`/note/${id}`} className="select-btn">
+            Select
+          </Link>
           <button className="deleteNote-btn" onClick={() => deleteNote(id)}>
             <FaTrash />
           </button>
         </div>
         {/* ========== Note About End ========== */}
       </div>
-    </Link>
+    </div>
   );
 };
 
