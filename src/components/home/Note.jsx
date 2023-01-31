@@ -26,7 +26,11 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
   };
 
   return (
-    <div className="note card" title={`Title: ${noteTitle}`}>
+    <Link
+      to={`/note/${id}`}
+      className="note card"
+      title={`Title: ${noteTitle}`}
+    >
       {/* ========== Note Card Start ========== */}
       <div className="note-img">
         {/* ========== Note Image Start ========== */}
@@ -60,7 +64,7 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
         </div>
         {/* ========== Note About End ========== */}
       </div>
-    </div>
+    </Link>
   );
 };
 
