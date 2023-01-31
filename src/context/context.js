@@ -39,8 +39,26 @@ const AppProvider = ({ children }) => {
   const categoriesSet = new Set(["All notes", ...sidebarCategories]);
   const [categories, setCategories] = useState(Array.from(categoriesSet));
 
+  const filterNotes = (category) => {
+    if (category === "All notes") {
+      // const fullList = noteList.map(note => note);
+      console.log(noteList);
+      return;
+    } else {
+      const filteredList = noteList.filter(
+        (note) => note.noteCategory === category
+      );
+      console.log(filteredList);
+      return;
+    }
+  };
+
   const categoryList = categories.map((category, i) => {
-    return <li key={i}>{category}</li>;
+    return (
+      <li onClick={() => filterNotes(category)} key={i}>
+        {category}
+      </li>
+    );
   });
 
   // I haven't used 'useReducer()' once you learn reducer then these functions will be set up in reducer and the code will be more clean
@@ -82,12 +100,8 @@ const AppProvider = ({ children }) => {
   // Storing note data in local storage everytime when the notelist changes. and the notelist changes when user add a note and save it.
   useEffect(() => {
     localStorage.setItem("noteList", JSON.stringify(noteList));
-  }, [noteList]);
-
-  //updating categories list when user save or delete a note.
-  useEffect(() => {
     setCategories(Array.from(categoriesSet));
-  }, [categoriesSet]);
+  }, [noteList]);
 
   // Inspecting screen width for change in the display of sidebar. Default open in laptop screen not in smaller one
   useEffect(() => {

@@ -9,7 +9,7 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
 
     if (noteTitleArr.length > "14") {
       let titleShorter = noteTitleArr.slice(0, 15).join("");
-      return titleShorter + ".. ";
+      return titleShorter + "... ";
     } else {
       return title;
     }
@@ -26,7 +26,7 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
   };
 
   return (
-    <div className="note card" title={noteTitle}>
+    <div className="note card" title={`Title: ${noteTitle}`}>
       {/* ========== Note Card Start ========== */}
       <div className="note-img">
         {/* ========== Note Image Start ========== */}

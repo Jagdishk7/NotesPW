@@ -60,6 +60,7 @@
   transition: var(--transition);
   border-radius: 3px;
   list-style: none;
+  cursor: default;
 }
 
 .category-list li:hover {
