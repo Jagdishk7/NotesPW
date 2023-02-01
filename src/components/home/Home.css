@@ -2,7 +2,7 @@
   font-size: 2rem;
   border: none;
   background: none;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -20,7 +20,7 @@
 
 .home-container {
   top: 70px;
-  background-color: #ffffff;
+  /* background-color: #ffffff; */
   position: absolute;
   left: 0%;
   width: 100%;
@@ -135,40 +135,60 @@
   /* height: 35%; */
 }
 
-.select-btn {
-  background-color: #ddebff;
-  color: #000;
-  font-weight: 500;
-  padding: 0rem 0.5rem;
-  cursor: pointer;
-  border-radius: 5px;
-  box-shadow: 0px 0px 1px #2d2b36;
-  transition: all 50ms linear;
-  font-size: 0.9rem;
-}
-
-.deleteNote-btn {
-  background: none;
-  border: none;
-  font-size: 1.05rem;
+.created-date {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.15rem;
-  border-radius: 4px;
-  color: #302e4d;
 }
 
-.deleteNote-btn:hover {
+.dateIcon {
+  font-size: 1.1rem;
+  margin-right: 2px;
+  color: #15008d;
+}
+
+.date {
+  font-size: 0.8rem;
+}
+
+.formatting-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0.1rem;
+  border-radius: 2px;
+  font-size: 1.1rem;
+  margin: 0 0.15rem;
+}
+
+.select-btn {
+  color: #4693ff;
+}
+
+.deleteNote-btn {
+  color: #bb2525;
+}
+
+.action-btns:hover {
   box-shadow: 0px 0px 3px #2d2b365e;
 }
-.select-btn:active,
-.deleteNote-btn:active {
+.action-btns:active {
   transform: scale(0.95);
   box-shadow: none;
 }
 
 @media screen and (min-width: 640px) {
+  .ham-btn {
+    display: flex;
+  }
   .sm-ham {
     display: none;
   }

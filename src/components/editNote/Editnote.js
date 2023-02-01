@@ -5,49 +5,23 @@ import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/context";
 import "./editNote.css";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
 
 const Editnote = () => {
-  const [noteData, setNoteData] = useState([]);
-  const [loading, setLoading] = useState(false);
   // imported required states and function from context
-  const {
-    writing,
-    setWriting,
-    clearPage,
-    titleValue,
-    categValue,
-    contentValue,
-    setTitleValue,
-    setCategValue,
-    setContentValue,
-    noteList,
-  } = GlobalContext();
+  const { state, dispatch } = GlobalContext();
+  const { writing, titleValue, categValue, contentValue, date } = state;
 
   const { id } = useParams();
 
-  const getNote = async () => {
-    try {
-      const note = await noteList.find((note) => note.id === id);
-      setNoteData(note);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const editNote = (id) => dispatch({ type: "EDIT_NOTE", payload: id });
 
   useEffect(() => {
-    setLoading(true);
-    getNote();
+    editNote(id);
   }, [id]);
-
-  console.log(noteData);
-  const { noteTitle, noteCategory, noteContent } = noteData;
 
   // It shows all the header and background when the mouse moves
   useEffect(() => {
-    const setPageBack = () => {
-      setWriting(false);
-    };
+    const setPageBack = () => dispatch({ type: "FILL_PAGE" });
     window.addEventListener("mousemove", setPageBack);
 
     return () => {
@@ -67,7 +41,11 @@ const Editnote = () => {
         </Link>
 
         {/* save button */}
-        <Link to="/" className="btn">
+        <Link
+          to="/"
+          className="btn"
+          onClick={() => dispatch({ type: "SAVE_NOTE", payload: date })}
+        >
           <FaSave />
           Save
         </Link>
@@ -87,8 +65,11 @@ const Editnote = () => {
             }`}
             name="noteTitle"
             placeholder="Enter title"
-            onChange={(e) => (clearPage(), setTitleValue(e.target.value))}
-            value={noteTitle}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_TITLE_VALUE", payload: e.target.value })
+            )}
+            value={titleValue}
           />
           <input
             type="text"
@@ -97,8 +78,11 @@ const Editnote = () => {
             }`}
             name="noteCategory"
             placeholder="Enter category"
-            onChange={(e) => (clearPage(), setCategValue(e.target.value))}
-            value={noteCategory}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_CATEG_VALUE", payload: e.target.value })
+            )}
+            value={categValue}
           />
         </div>
         <div className="content">
@@ -109,8 +93,11 @@ const Editnote = () => {
             }`}
             placeholder="Your note..."
             id="noteContent"
-            onChange={(e) => (clearPage(), setContentValue(e.target.value))}
-            value={noteContent}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_CONTENT_VALUE", payload: e.target.value })
+            )}
+            value={contentValue}
           ></textarea>
         </div>
       </div>

@@ -22,8 +22,6 @@
   --text-black-700: #504e70;
   --secondary-color: #ddebff;
   --transition: all 200ms linear;
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
 }
 
 * {
@@ -31,10 +29,11 @@
   padding: 0;
   text-decoration: none;
   box-sizing: border-box;
+
+  font-family: "poppins" sans-serif;
 }
 
 body {
   line-height: 1.5;
   font-size: 16px;
-  font-family: "poppins" sans-serif;
 }

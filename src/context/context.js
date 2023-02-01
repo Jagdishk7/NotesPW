@@ -1,4 +1,6 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useReducer, useEffect } from "react";
+
+import { reducer } from "./Reducer";
 
 const AppContext = React.createContext();
 
@@ -13,138 +15,50 @@ const noteListFromLocalstorage = () => {
 };
 
 const AppProvider = ({ children }) => {
-  // Sidebar toggle state.
-  const [sidebarOpen, setSidebarOpen] = useState(
-    window.innerWidth < "640" ? false : true
-  );
+  // dynamic date;
+  const today = new Date();
+  const date = `${today.getDate()}-${
+    today.getMonth() + 1
+  }-${today.getFullYear()}`;
 
-  // State for removing everything when user is writing a note.
-  const [writing, setWriting] = useState(false);
-
-  // State to display note/card using the data from localstorage.
-  const [noteList, setNoteList] = useState(noteListFromLocalstorage());
-
-  // add note page form control states
-  const [titleValue, setTitleValue] = useState("");
-  const [categValue, setCategValue] = useState("");
-  const [contentValue, setContentValue] = useState("");
-
-  // dynamic categories in the sidebar
-  const sidebarCategories = noteList.map((note) => {
-    const { noteCategory } = note;
-    return noteCategory;
-  });
-
-  // changing categories array into set for unique values and state for managing dynamic categories in sidebar
-  const categoriesSet = new Set(["All notes", ...sidebarCategories]);
-  const [categories, setCategories] = useState(Array.from(categoriesSet));
-
-  const filterNotes = (category) => {
-    if (category === "All notes") {
-      // const fullList = noteList.map(note => note);
-      console.log(noteList);
-      return;
-    } else {
-      const filteredList = noteList.filter(
-        (note) => note.noteCategory === category
-      );
-      console.log(filteredList);
-      return;
-    }
+  // reducer function for state
+  const defaultState = {
+    loading: false,
+    noteList: noteListFromLocalstorage(),
+    categories: [],
+    titleValue: "",
+    categValue: "",
+    contentValue: "",
+    isNoteEditing: false,
+    editId: null,
+    writing: false,
+    isSidebarOpen: window.innerWidth > "640" ? true : false,
+    date,
+    filteredNotes: [],
   };
 
-  const categoryList = categories.map((category, i) => {
-    return (
-      <li onClick={() => filterNotes(category)} key={i}>
-        {category}
-      </li>
-    );
-  });
+  const [state, dispatch] = useReducer(reducer, defaultState);
 
-  // I haven't used 'useReducer()' once you learn reducer then these functions will be set up in reducer and the code will be more clean
-  const closeSidebar = () => {
-    setSidebarOpen(false);
-  };
-
-  const openSidebar = () => {
-    setSidebarOpen(true);
-  };
-
-  const clearPage = () => {
-    setWriting(true);
-  };
-
-  // this will be triggered when save button will be clicked in the addNote page.
-  const saveNote = () => {
-    if (titleValue !== "" && categValue !== "" && contentValue !== "") {
-      const noteObj = {
-        id: new Date().getTime().toString(),
-        noteTitle: titleValue,
-        noteCategory: categValue,
-        noteContent: contentValue,
-      };
-      setNoteList([...noteList, noteObj]);
-      setCategValue(Array.from(categoriesSet));
-      setTitleValue("");
-      setCategValue("");
-      setContentValue("");
-    }
-  };
-
-  // function to delete particular note
-  const deleteNote = (id) => {
-    const newNoteList = noteList.filter((note) => note.id !== id);
-    setNoteList(newNoteList);
-  };
-
-  // function to find particular note
-
-  // Storing note data in local storage everytime when the notelist changes. and the notelist changes when user add a note and save it.
   useEffect(() => {
-    localStorage.setItem("noteList", JSON.stringify(noteList));
-    setCategories(Array.from(categoriesSet));
-  }, [noteList]);
+    const setCategoryList = () => dispatch({ type: "SET_CATEGORY_LIST" });
+    setCategoryList();
+    localStorage.setItem("noteList", JSON.stringify(state.noteList));
+  }, [state.noteList]);
 
-  // Inspecting screen width for change in the display of sidebar. Default open in laptop screen not in smaller one
   useEffect(() => {
-    const checkSidebar = () => {
-      if (window.innerWidth < "640") {
-        setSidebarOpen(false);
+    const checkWidth = () => {
+      if (window.innerWidth > "640") {
+        dispatch({ type: "OPEN_SIDEBAR" });
       } else {
-        setSidebarOpen(true);
+        dispatch({ type: "CLOSE_SIDEBAR" });
       }
     };
-    window.addEventListener("resize", checkSidebar);
-
-    return () => {
-      window.removeEventListener("resize", checkSidebar);
-    };
+    window.addEventListener("resize", checkWidth);
+    return () => window.removeEventListener("resize", checkWidth);
   }, []);
 
   return (
-    // padding every state and function to the whole app so these can be directly accessed anywhere without prop drilling.
-    <AppContext.Provider
-      value={{
-        sidebarOpen,
-        writing,
-        noteList,
-        titleValue,
-        categValue,
-        contentValue,
-        categoryList,
-        setCategories,
-        setTitleValue,
-        setCategValue,
-        setContentValue,
-        setNoteList,
-        setWriting,
-        closeSidebar,
-        openSidebar,
-        clearPage,
-        saveNote,
-        deleteNote,
-      }}
-    >
+    <AppContext.Provider value={{ state, dispatch }}>
       {children}
     </AppContext.Provider>
   );

@@ -1,9 +1,11 @@
 import React from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaEdit, FaRegCalendarAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { GlobalContext } from "../../context/context";
 import "./Home.css";
 
-const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
+const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
+  const { dispatch } = GlobalContext();
   const noteTitleShrinker = (title) => {
     const noteTitleArr = title.split("");
 
@@ -53,12 +55,21 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, deleteNote }) => {
         <div className="note-description">{noteDescMaker(noteContent)}</div>
         <div className="row">
           {/* changed from btn to link so we can navigate to detail pages */}
-          <Link to={`/note/${id}`} className="select-btn">
-            Select
-          </Link>
-          <button className="deleteNote-btn" onClick={() => deleteNote(id)}>
-            <FaTrash />
-          </button>
+          <div className="created-date">
+            <FaRegCalendarAlt className="dateIcon" />
+            <span className="date"> : {createdAt}</span>
+          </div>
+          <div className="formatting-buttons">
+            <Link to={`/note/${id}`} className="select-btn action-btns">
+              <FaEdit />
+            </Link>
+            <button
+              className="deleteNote-btn action-btns"
+              onClick={() => dispatch({ type: "DELETE_NOTE", payload: id })}
+            >
+              <FaTrash />
+            </button>
+          </div>
         </div>
         {/* ========== Note About End ========== */}
       </div>

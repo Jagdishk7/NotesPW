@@ -7,24 +7,13 @@ import "./addNote.css";
 
 const AddNote = () => {
   // imported required states and function from context
-  const {
-    writing,
-    setWriting,
-    clearPage,
-    titleValue,
-    categValue,
-    contentValue,
-    setTitleValue,
-    setCategValue,
-    setContentValue,
-    saveNote,
-  } = GlobalContext();
+  const { state, dispatch } = GlobalContext();
+
+  const { writing, titleValue, categValue, contentValue, date } = state;
 
   // It shows all the header and background when the mouse moves
   useEffect(() => {
-    const setPageBack = () => {
-      setWriting(false);
-    };
+    const setPageBack = () => dispatch({ type: "FILL_PAGE" });
     window.addEventListener("mousemove", setPageBack);
 
     return () => {
@@ -44,7 +33,11 @@ const AddNote = () => {
         </Link>
 
         {/* save button */}
-        <Link to="/" className="btn" onClick={saveNote}>
+        <Link
+          to="/"
+          className="btn"
+          onClick={() => dispatch({ type: "SAVE_NOTE", payload: date })}
+        >
           <FaSave />
           Save
         </Link>
@@ -64,7 +57,10 @@ const AddNote = () => {
             }`}
             name="noteTitle"
             placeholder="Enter title"
-            onChange={(e) => (clearPage(), setTitleValue(e.target.value))}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_TITLE_VALUE", payload: e.target.value })
+            )}
             value={titleValue}
           />
           <input
@@ -74,7 +70,10 @@ const AddNote = () => {
             }`}
             name="noteCategory"
             placeholder="Enter category"
-            onChange={(e) => (clearPage(), setCategValue(e.target.value))}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_CATEG_VALUE", payload: e.target.value })
+            )}
             value={categValue}
           />
         </div>
@@ -86,7 +85,10 @@ const AddNote = () => {
             }`}
             placeholder="Your note..."
             id="noteContent"
-            onChange={(e) => (clearPage(), setContentValue(e.target.value))}
+            onChange={(e) => (
+              dispatch({ type: "CLEAR_PAGE" }),
+              dispatch({ type: "SET_CONTENT_VALUE", payload: e.target.value })
+            )}
             value={contentValue}
           ></textarea>
         </div>

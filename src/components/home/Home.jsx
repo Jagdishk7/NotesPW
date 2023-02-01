@@ -8,34 +8,45 @@ import { FaBars, FaPlus } from "react-icons/fa";
 
 const Home = () => {
   // bringing all required states from context.
-  const { openSidebar, sidebarOpen, noteList, deleteNote } = GlobalContext();
+  const { state, dispatch } = GlobalContext();
+  const { noteList, isSidebarOpen, filteredNotes } = state;
 
   // displaying all the notes dynamically from localstorage
   const notes = noteList.map((note) => {
     const { id } = note;
-    return <Note key={id} {...note} deleteNote={deleteNote} />;
+    return <Note key={id} {...note} />;
+  });
+
+  const filtered = filteredNotes.map((note) => {
+    const { id } = note;
+    return <Note key={id} {...note} />;
   });
 
   return (
     <>
       {/* Hamburger icon to toggle sidebar */}
-      {!sidebarOpen && (
-        <button className={`ham-btn`} onClick={openSidebar}>
+      {!isSidebarOpen && (
+        <button
+          className={`ham-btn`}
+          onClick={() => dispatch({ type: "OPEN_SIDEBAR" })}
+        >
           <FaBars />
         </button>
       )}
       <Sidebar />
       <div
         className={`${
-          // this class is given so when sidebar is closed the content comes in center
-          !sidebarOpen
+          !isSidebarOpen
             ? "home-container home-container-closed-sidebar"
             : "home-container"
         }`}
       >
         <header className="home-header">
           {
-            <button className="sm-ham" onClick={openSidebar}>
+            <button
+              className="sm-ham"
+              onClick={() => dispatch({ type: "OPEN_SIDEBAR" })}
+            >
               <FaBars />
             </button>
           }
@@ -50,7 +61,7 @@ const Home = () => {
             <FaPlus />
           </Link>
           {/* reversed the note array so new note will be displayed first. */}
-          {notes.reverse()}
+          {filteredNotes.length < 1 ? notes.reverse() : filtered.reverse()}
         </div>
       </div>
     </>
