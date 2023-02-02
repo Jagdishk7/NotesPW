@@ -17,6 +17,8 @@ export const reducer = (state, action) => {
     return {
       ...state,
       showAlert: false,
+      alertMsg: "",
+      alertBg: "",
     };
   }
   if (type === "DELETE_NOTE") {
@@ -26,7 +28,7 @@ export const reducer = (state, action) => {
       noteList: filteredNotes,
       showAlert: true,
       alertMsg: "Note deleted successfully",
-      alertBg: "#ff8080",
+      alertBg: "#70db70",
     };
   }
   if (type === "CLEAR_PAGE") {
