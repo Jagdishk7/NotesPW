@@ -5,11 +5,21 @@ import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 import { GlobalContext } from "../../context/context";
 import { FaBars, FaPlus } from "react-icons/fa";
+import Alert from "../../Alert.js/Alert";
 
 const Home = () => {
   // bringing all required states from context.
   const { state, dispatch } = GlobalContext();
-  const { noteList, isSidebarOpen, filteredNotes } = state;
+  const {
+    noteList,
+    isSidebarOpen,
+    filteredNotes,
+    searchedNoteArr,
+    showAlert,
+    alertMsg,
+    alertBg,
+    noteSearched,
+  } = state;
 
   // displaying all the notes dynamically from localstorage
   const notes = noteList.map((note) => {
@@ -21,6 +31,15 @@ const Home = () => {
     const { id } = note;
     return <Note key={id} {...note} />;
   });
+
+  const searchedNotes = searchedNoteArr.map((note) => {
+    const { id } = note;
+    return <Note key={id} {...note} />;
+  });
+
+  const closeAlert = () => {
+    dispatch({ type: "CLOSE_ALERT" });
+  };
 
   return (
     <>
@@ -52,6 +71,23 @@ const Home = () => {
           }
           <h1 className="home-title">Welcome User...</h1>
         </header>
+        <div className="button-box">
+          {showAlert && (
+            <Alert
+              alertBg={alertBg}
+              alertMsg={alertMsg}
+              closeAlert={closeAlert}
+            />
+          )}
+          {noteSearched && (
+            <button
+              className=" clearSearch-btn"
+              onClick={() => dispatch({ type: "CLEAR_SEARCH" })}
+            >
+              Clear search
+            </button>
+          )}
+        </div>
         <div className="home-content">
           {/* ===========
             Add note btn
@@ -61,7 +97,11 @@ const Home = () => {
             <FaPlus />
           </Link>
           {/* reversed the note array so new note will be displayed first. */}
-          {filteredNotes.length < 1 ? notes.reverse() : filtered.reverse()}
+          {searchedNoteArr.length < 1
+            ? filteredNotes.length < 1
+              ? notes.reverse()
+              : filtered.reverse()
+            : searchedNotes.reverse()}
         </div>
       </div>
     </>

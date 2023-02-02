@@ -35,6 +35,12 @@ const AppProvider = ({ children }) => {
     isSidebarOpen: window.innerWidth > "640" ? true : false,
     date,
     filteredNotes: [],
+    noteSearched: false,
+    searchBarValue: "",
+    searchedNoteArr: [],
+    showAlert: false,
+    alertMsg: "",
+    alertBg: "",
   };
 
   const [state, dispatch] = useReducer(reducer, defaultState);

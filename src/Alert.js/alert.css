@@ -1,0 +1,12 @@
+.alert-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 40px;
+  position: fixed;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 0 12px #00000081;
+}

@@ -13,11 +13,20 @@ export const reducer = (state, action) => {
       isSidebarOpen: true,
     };
   }
+  if (type === "CLOSE_ALERT") {
+    return {
+      ...state,
+      showAlert: false,
+    };
+  }
   if (type === "DELETE_NOTE") {
     const filteredNotes = state.noteList.filter((note) => note.id !== payload);
     return {
       ...state,
       noteList: filteredNotes,
+      showAlert: true,
+      alertMsg: "Note deleted successfully",
+      alertBg: "#ff8080",
     };
   }
   if (type === "CLEAR_PAGE") {
@@ -74,6 +83,9 @@ export const reducer = (state, action) => {
         contentValue: "",
         idEditing: false,
         editId: null,
+        showAlert: true,
+        alertMsg: "Note edited",
+        alertBg: "#70db70",
       };
     } else {
       const { titleValue, categValue, contentValue } = state;
@@ -92,6 +104,9 @@ export const reducer = (state, action) => {
           titleValue: "",
           categValue: "",
           contentValue: "",
+          showAlert: true,
+          alertMsg: "New note added",
+          alertBg: "#70db70",
         };
       } else {
         return { ...state };
@@ -107,7 +122,7 @@ export const reducer = (state, action) => {
     };
   }
   if (type === "FILTER_NOTES") {
-    if (payload == "All notes") {
+    if (payload === "All notes") {
       return {
         ...state,
         filteredNotes: state.noteList,
@@ -131,6 +146,47 @@ export const reducer = (state, action) => {
       titleValue: target.noteTitle,
       categValue: target.noteCategory,
       contentValue: target.noteContent,
+    };
+  }
+  if (type === "SEARCH_BAR_VALUE_CHANGE") {
+    return {
+      ...state,
+      searchBarValue: payload,
+    };
+  }
+  if (type === "SEARCH_NOTE") {
+    if (payload === "") {
+      return {
+        ...state,
+        showAlert: true,
+        alertMsg: `Enter a value to search`,
+        alertBg: "#ff8080",
+      };
+    }
+    const searchedNotes = state.noteList.filter(
+      (note) => note.noteTitle === payload
+    );
+    if (searchedNotes.length < 1) {
+      return {
+        ...state,
+        showAlert: true,
+        alertMsg: `No item matched with "${payload}"`,
+        alertBg: "#ff8080",
+        searchBarValue: "",
+      };
+    }
+    return {
+      ...state,
+      searchedNoteArr: searchedNotes,
+      noteSearched: true,
+    };
+  }
+  if (type === "CLEAR_SEARCH") {
+    return {
+      ...state,
+      searchedNoteArr: [],
+      noteSearched: false,
+      searchBarValue: "",
     };
   }
 };

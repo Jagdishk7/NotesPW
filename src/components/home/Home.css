@@ -18,14 +18,30 @@
   transform: scale(0.9);
 }
 
+.button-box {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem;
+}
+
+.clearSearch-btn {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  right: 10px;
+  font-weight: 600;
+  padding: 0.2rem;
+}
+
 .home-container {
   top: 70px;
-  /* background-color: #ffffff; */
   position: absolute;
   left: 0%;
   width: 100%;
   min-height: 85vh;
   transition: all 200ms linear;
+  padding: 0.5rem;
 }
 .home-header {
   padding: 0 0.5rem;
