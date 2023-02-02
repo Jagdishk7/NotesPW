@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect } from "react";
-import "./alert.css";
 
 const Alert = ({ alertMsg, alertBg, closeAlert }) => {
   useEffect(() => {

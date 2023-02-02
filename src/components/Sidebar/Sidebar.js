@@ -1,4 +1,3 @@
-import "./sidebar.css";
 import React from "react";
 import {
   FaDiscord,

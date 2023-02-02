@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { FaArrowLeft, FaSave } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../../context/context";
-import "./addNote.css";
 
 const AddNote = () => {
   // imported required states and function from context

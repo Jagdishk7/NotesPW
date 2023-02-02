@@ -1,6 +1,11 @@
-/* ================ Fonts ================ */
+/* ================ 
+  Font import
+================ */
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@200;300;500;600;700&display=swap");
 
+/* ==========
+  Scrollbar styles
+  =========*/
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -13,6 +18,10 @@
   background-color: #ffe143;
   border-radius: 2px;
 }
+
+/* ==========
+  Global variables and styles
+  =========*/
 
 :root {
   --bg-black-900: #f2f2fc;
@@ -36,4 +45,648 @@
 body {
   line-height: 1.5;
   font-size: 16px;
+}
+
+/* ==============
+  Header styles
+  ==============*/
+
+.header {
+  background-color: #ffe143;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: fixed;
+  z-index: +2;
+  transition: all 200ms linear;
+}
+
+.header-hidden {
+  visibility: hidden;
+  transition: all 200ms linear;
+}
+
+.header .logo {
+  position: absolute;
+  left: 70px;
+}
+.header a {
+  display: flex;
+  align-items: center;
+}
+.header a span {
+  font-family: "Clicker script", cursive;
+  font-size: 30px;
+}
+.header a .logo-icon {
+  font-size: 30px;
+}
+.header .search {
+  outline: none;
+  width: 90%;
+  height: 25px;
+  padding: 10px;
+  border-radius: 5px 0 0 5px;
+  background-color: var(--bg-black-100);
+  border: none;
+}
+.header .search-bar {
+  display: flex;
+  position: absolute;
+  right: 70px;
+  background-color: var(--bg-black-100);
+  width: 400px;
+  height: 25px;
+  border-radius: 5px;
+}
+.header .search:focus {
+  box-shadow: 0 0 2px #2d2b365e;
+}
+.btn-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 40px;
+  height: 25px;
+  border-radius: 0 5px 5px 0;
+  background-color: var(--bg-black-100);
+  border-left: 0.5px solid #eaeaea;
+}
+
+.btn-search:hover {
+  background-color: #eaeaea;
+}
+.btn-search:active {
+  background-color: #d3d2d2;
+}
+
+@media (max-width: 750px) {
+  .header .logo {
+    left: 10px;
+  }
+  .header .search {
+    width: 175px;
+  }
+  .header .search-bar {
+    right: 10px;
+    width: 200px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header a .logo-icon {
+    font-size: 25px;
+  }
+  .header a p {
+    font-size: 12px;
+  }
+  .header .search {
+    width: 125px;
+  }
+  .header .search-bar {
+    right: 10px;
+    width: 150px;
+  }
+}
+
+/* ==============
+  Sidebar styles
+  ==============*/
+
+.sidebar {
+  width: 100%;
+  height: 92vh;
+  position: fixed;
+  background-color: #fff7ccc8;
+  padding: 0.5rem;
+  padding-bottom: 0.8rem;
+  top: 70px;
+  left: 0;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(4px);
+  z-index: 2;
+  transform: translate(0);
+}
+
+.close-sidebar {
+  transform: translate(-100%);
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.sidebar-heading {
+  transition: var(--transition);
+  font-size: 1.1rem;
+  color: #302e4d;
+}
+
+.closeSidebar-btn {
+  color: #bb2525;
+  font-size: 1.5rem;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.closeSidebar-btn:hover {
+  color: #9c2323;
+}
+.closeSidebar-btn:active {
+  transform: scale(0.9);
+}
+
+.category-list {
+  overflow-y: auto;
+  padding: 0.5rem;
+  height: 70vh;
+}
+
+.category-list li {
+  border-bottom: 1px solid var(--secondary-color);
+  padding: 8px 3px;
+  transition: var(--transition);
+  border-radius: 3px;
+  list-style: none;
+  cursor: default;
+}
+
+.category-list li:hover {
+  background-color: #ddebff;
+}
+
+.social-icons {
+  padding: 0.3rem;
+  display: flex;
+  justify-content: center;
+}
+
+.social-icons a {
+  margin: 0 0.25rem;
+  font-size: 1.3rem;
+  color: #302e4d;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 640px) {
+  .sidebar {
+    width: 20%;
+    background-color: #fff7cc;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .sidebar-heading {
+    font-size: 1.5rem;
+  }
+  .closeSidebar-btn {
+    font-size: 1.75rem;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .sidebar-heading {
+    font-size: 1.75rem;
+  }
+  .closeSidebar-btn {
+    font-size: 2rem;
+  }
+}
+
+/* ==============
+  Note area styles
+  ==============*/
+
+.ham-btn {
+  font-size: 2rem;
+  border: none;
+  background: none;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  padding: 0.2rem;
+  top: 80px;
+  left: 10px;
+  z-index: -1;
+  transition: all 50ms linear;
+}
+
+.ham-btn:active {
+  transform: scale(0.9);
+}
+
+.button-box {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 1.5rem;
+}
+
+.clearSearch-btn {
+  border: none;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+  right: 10px;
+  font-weight: 600;
+  padding: 0.2rem;
+}
+
+.home-container {
+  top: 70px;
+  position: absolute;
+  left: 0%;
+  width: 100%;
+  min-height: 85vh;
+  transition: all 200ms linear;
+  padding: 0.5rem;
+}
+.home-header {
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sm-ham {
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+}
+
+.home-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2rem;
+  grid-auto-rows: 250px;
+  margin-top: 20px;
+  justify-items: center;
+  padding: 0 1rem;
+}
+.home-title {
+  color: var(--text-black-700);
+  font-size: 1.5rem;
+}
+.card {
+  min-width: 220px;
+  width: 200px;
+  height: 250px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.new-note {
+  background: #fff7cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  transition: all 100ms linear;
+  font-size: 3rem;
+}
+
+.uil-plus {
+  font-size: 50px;
+}
+
+.note {
+  display: flex;
+  flex-direction: column;
+  transition: all 100ms linear;
+}
+
+.note:hover,
+.new-note:hover {
+  box-shadow: 0 0 4px #00000083;
+}
+.new-note:active {
+  transform: scale(0.99);
+  box-shadow: none;
+}
+
+.note-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  background-color: #ddebff;
+  border-radius: 10px 10px 0 0;
+}
+
+.note-img-lines {
+  background-color: #000;
+  margin-bottom: 15px;
+  width: 80%;
+  height: 1px;
+}
+
+.note-about {
+  padding: 0.2rem 0.5rem 0.4rem 0.5rem;
+  width: 100%;
+  height: 40%;
+  background-color: #fff7cc;
+  border-radius: 0 0 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-category {
+  font-size: 0.8rem;
+}
+
+.note-description {
+  font-size: 0.66rem;
+  /* height: 35%; */
+}
+
+.created-date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateIcon {
+  font-size: 1.1rem;
+  margin-right: 2px;
+  color: #15008d;
+}
+
+.date {
+  font-size: 0.8rem;
+}
+
+.formatting-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0.1rem;
+  border-radius: 2px;
+  font-size: 1.1rem;
+  margin: 0 0.15rem;
+}
+
+.select-btn {
+  color: #4693ff;
+}
+
+.deleteNote-btn {
+  color: #bb2525;
+}
+
+.action-btns:hover {
+  box-shadow: 0px 0px 3px #2d2b365e;
+}
+.action-btns:active {
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+@media screen and (min-width: 640px) {
+  .ham-btn {
+    display: flex;
+  }
+  .sm-ham {
+    display: none;
+  }
+  .home-container {
+    width: 80%;
+    left: 20%;
+  }
+  .home-container-closed-sidebar {
+    left: 10%;
+  }
+}
+
+/* ==============
+  add note page styles
+  ==============*/
+
+:root {
+  --primaryFont: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+  --clearTransition: all 100ms linear;
+}
+
+.addNote-container {
+  height: 88vh;
+  position: relative;
+  top: 70px;
+  /* border: 2px solid black; */
+}
+
+.buttons {
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: var(--clearTransition);
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  padding: 0.25rem 0.8rem;
+  border-radius: 8px;
+  background-color: #ffe143;
+  font-weight: bold;
+  box-shadow: 0 0 2px #000;
+  color: #504e70;
+  transition: var(--clearTransition);
+}
+
+.btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 1px #000;
+}
+
+.input-section {
+  /* border: 2px solid black; */
+  border-radius: 10px;
+  width: 90%;
+  margin: auto;
+  padding: 2rem 1rem;
+  min-height: 80%;
+  background-color: #f4f7ff;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.25rem 0;
+}
+
+.inps,
+.noteContent {
+  /* border: 1px solid #000; */
+  border: none;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
+  padding: 0.6rem 0.4rem;
+  outline: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  transition: all 50ms linear;
+  letter-spacing: 1px;
+}
+
+.inps:focus,
+.noteContent:focus {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.607);
+}
+.inps::placeholder,
+.noteContent::placeholder {
+  color: lightgray;
+}
+
+.noteTitle {
+  width: 100%;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+}
+
+.noteCategory {
+  width: 100%;
+  font-weight: bold;
+}
+
+.noteContent {
+  resize: none;
+  width: 100%;
+  min-height: 300px;
+}
+
+@media screen and (min-width: 750px) {
+  .buttons {
+    padding: 0.5rem 5rem;
+  }
+  .input-section {
+    width: 75%;
+    padding: 2rem 3rem;
+  }
+}
+@media screen and (min-width: 480px) {
+  .heading {
+    flex-direction: row;
+  }
+
+  .inps,
+  .noteContent {
+    /* border: 1px solid #000; */
+    border: none;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border-radius: 3px;
+    font-size: 1.05rem;
+    transition: all 50ms linear;
+  }
+
+  .noteTitle {
+    width: 69%;
+    margin-bottom: 0;
+  }
+
+  .noteCategory {
+    width: 30.5%;
+  }
+}
+
+/* 
+    ===============
+    classes for user while writing
+    ===============
+  */
+.buttons-hidden {
+  visibility: hidden;
+  transition: var(--clearTransition);
+}
+
+.input-section-transparent {
+  background-color: #fff;
+  transition: var(--clearTransition);
+}
+
+.inps-writing,
+.noteContent-writing {
+  box-shadow: none;
+  transition: var(--clearTransition);
+}
+.inps-writing:focus,
+.noteContent-writing:focus {
+  box-shadow: none;
+  transition: var(--clearTransition);
+}
+
+/* ==============
+  Error page styles
+  ==============*/
+
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.errPgBtn {
+  margin: 1.5rem;
+}
+
+/* ==============
+  alert box styles
+  ==============*/
+
+.alert-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+  width: 25%;
+  right: 1.2rem;
+  height: 40px;
+  position: fixed;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 0 12px #00000081;
+  padding: 0 0.5rem;
+}
+
+@media screen and (max-width: 640px) {
+  .alert-box {
+    width: 90%;
+  }
 }

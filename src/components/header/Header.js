@@ -1,5 +1,4 @@
 import React from "react";
-import "./Header.css";
 import { FaBook, FaSearch } from "react-icons/fa";
 import { GlobalContext } from "../../context/context";
 
