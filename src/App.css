@@ -606,6 +606,17 @@ body {
     transition: var(--transition-fast);
   }
 
+  .inps-writing,
+  .noteContent-writing {
+    box-shadow: none;
+    transition: var(--transition-slow);
+  }
+  .inps-writing:focus,
+  .noteContent-writing:focus {
+    box-shadow: none;
+    transition: var(--transition-slow);
+  }
+
   .noteTitle {
     width: 69%;
     margin-bottom: 0;
