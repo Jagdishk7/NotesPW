@@ -28,7 +28,7 @@ export const reducer = (state, action) => {
       noteList: filteredNotes,
       showAlert: true,
       alertMsg: "Note deleted successfully",
-      alertBg: "#70db70",
+      alertBg: "#ff8080",
     };
   }
   if (type === "CLEAR_PAGE") {
@@ -68,9 +68,9 @@ export const reducer = (state, action) => {
         if (note.id === state.editId) {
           return {
             ...note,
-            noteTitle: state.titleValue,
-            noteCategory: state.categValue,
-            noteContent: state.contentValue,
+            noteTitle: state.titleValue.trim(),
+            noteCategory: state.categValue.trim(),
+            noteContent: state.contentValue.trim(),
             createdAt: `${payload}(edited)`,
           };
         } else {
@@ -94,9 +94,9 @@ export const reducer = (state, action) => {
       if (titleValue !== "" && categValue !== "" && contentValue !== "") {
         const noteObj = {
           id: new Date().getTime().toString(),
-          noteTitle: titleValue,
-          noteCategory: categValue,
-          noteContent: contentValue,
+          noteTitle: titleValue.trim(),
+          noteCategory: categValue.trim(),
+          noteContent: contentValue.trim(),
           createdAt: payload,
         };
 
