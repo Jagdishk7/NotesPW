@@ -1,36 +1,27 @@
-/* ================ 
+/* ================ bg-white-100
   Font import
 ================ */
 @import url("https://fonts.googleapis.com/css2?family=Clicker+Script&family=Poppins:wght@200;300;500;600;700&display=swap");
-
-/* ==========
-  Scrollbar styles
-  =========*/
-::-webkit-scrollbar {
-  width: 10px;
-}
-::-webkit-scrollbar-track {
-  background-color: white;
-  border-radius: 2px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #ffe143;
-  border-radius: 2px;
-}
 
 /* ==========
   Global variables and styles
   =========*/
 
 :root {
-  --bg-black-900: #f2f2fc;
-  --bg-black-100: #fdf9ff;
-  --bg-black-50: #e8dfec;
+  --red: #bb2525;
+  --red-darker: #9c2323;
+  --accent-color-primary: #ffe143;
+  --accent-color-secondary: #fff7cc;
+  --accent-color-secondary-transparent: #fff7ccc8;
+  --bg-white-100: #f4f7ff;
   --text-black-900: #302e4d;
-  --text-black-700: #504e70;
-  --secondary-color: #ddebff;
-  --transition: all 200ms linear;
+  --secondary-color-blue: #ddebff;
+  --transition-slow: all 200ms linear;
+  --transition-medium: all 100ms linear;
+  --transition-fast: all 50ms linear;
+  --shadow-dark: 0 0 4px #00000083;
+  --shadow-light: 0 0 1px #0000009b;
+  --shadow-wide: 0 0 12px #34343481;
 }
 
 * {
@@ -47,111 +38,108 @@ body {
   font-size: 16px;
 }
 
+/* ==========
+  Global classes
+  =========*/
+.flex {
+  display: flex;
+}
+
+/* ==========
+  Scrollbar styles
+  =========*/
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background-color: white;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent-color-primary);
+  border-radius: 2px;
+}
+
 /* ==============
   Header styles
   ==============*/
 
 .header {
-  background-color: #ffe143;
+  background-color: var(--accent-color-primary);
   width: 100%;
   height: 70px;
   display: flex;
-  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
   position: fixed;
-  z-index: +2;
-  transition: all 200ms linear;
+  z-index: 2;
 }
 
 .header-hidden {
   visibility: hidden;
-  transition: all 200ms linear;
+  transition: var(--transition-slow);
 }
 
-.header .logo {
-  position: absolute;
-  left: 70px;
+.logo {
+  width: fit-content;
 }
-.header a {
+
+.logo a {
   display: flex;
   align-items: center;
 }
-.header a span {
+
+.logo a span {
   font-family: "Clicker script", cursive;
   font-size: 30px;
 }
-.header a .logo-icon {
-  font-size: 30px;
+
+.logo-icon {
+  font-size: 2rem;
 }
-.header .search {
-  outline: none;
-  width: 90%;
-  height: 25px;
-  padding: 10px;
-  border-radius: 5px 0 0 5px;
-  background-color: var(--bg-black-100);
-  border: none;
-}
-.header .search-bar {
+
+.search-bar {
   display: flex;
-  position: absolute;
-  right: 70px;
-  background-color: var(--bg-black-100);
-  width: 400px;
+  background-color: var(--bg-white-100);
+  width: 35%;
+  min-width: 180px;
   height: 25px;
   border-radius: 5px;
 }
-.header .search:focus {
-  box-shadow: 0 0 2px #2d2b365e;
+
+.search {
+  outline: none;
+  width: 90%;
+  padding: 0 0.5rem;
+  border-radius: 5px 0 0 5px;
+  background-color: var(--bg-white-100);
+  border: none;
 }
+
+.header .search:focus {
+  box-shadow: var(--shadow-dark);
+}
+
 .btn-search {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  outline: none;
   border: none;
   width: 40px;
-  height: 25px;
   border-radius: 0 5px 5px 0;
-  background-color: var(--bg-black-100);
+  background-color: var(--bg-white-100);
   border-left: 0.5px solid #eaeaea;
 }
 
 .btn-search:hover {
   background-color: #eaeaea;
 }
+
 .btn-search:active {
   background-color: #d3d2d2;
-}
-
-@media (max-width: 750px) {
-  .header .logo {
-    left: 10px;
-  }
-  .header .search {
-    width: 175px;
-  }
-  .header .search-bar {
-    right: 10px;
-    width: 200px;
-  }
-}
-
-@media (max-width: 360px) {
-  .header a .logo-icon {
-    font-size: 25px;
-  }
-  .header a p {
-    font-size: 12px;
-  }
-  .header .search {
-    width: 125px;
-  }
-  .header .search-bar {
-    right: 10px;
-    width: 150px;
-  }
 }
 
 /* ==============
@@ -162,12 +150,12 @@ body {
   width: 100%;
   height: 92vh;
   position: fixed;
-  background-color: #fff7ccc8;
+  background-color: var(--accent-color-secondary-transparent);
   padding: 0.5rem;
   padding-bottom: 0.8rem;
   top: 70px;
   left: 0;
-  transition: var(--transition);
+  transition: var(--transition-slow);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -188,21 +176,21 @@ body {
 }
 
 .sidebar-heading {
-  transition: var(--transition);
+  transition: var(--transition-slow);
   font-size: 1.1rem;
-  color: #302e4d;
+  color: var(--text-black-900);
 }
 
 .closeSidebar-btn {
-  color: #bb2525;
+  color: var(--red);
   font-size: 1.5rem;
-  transition: var(--transition);
+  transition: var(--transition-slow);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .closeSidebar-btn:hover {
-  color: #9c2323;
+  color: var(--red-darker);
 }
 .closeSidebar-btn:active {
   transform: scale(0.9);
@@ -215,16 +203,16 @@ body {
 }
 
 .category-list li {
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--secondary-color-blue);
   padding: 8px 3px;
-  transition: var(--transition);
+  transition: var(--transition-slow);
   border-radius: 3px;
   list-style: none;
   cursor: default;
 }
 
 .category-list li:hover {
-  background-color: #ddebff;
+  background-color: var(--secondary-color-blue);
 }
 
 .social-icons {
@@ -236,32 +224,8 @@ body {
 .social-icons a {
   margin: 0 0.25rem;
   font-size: 1.3rem;
-  color: #302e4d;
+  color: var(--text-black-900);
   cursor: pointer;
-}
-
-@media screen and (min-width: 640px) {
-  .sidebar {
-    width: 20%;
-    background-color: #fff7cc;
-  }
-}
-
-@media screen and (min-width: 960px) {
-  .sidebar-heading {
-    font-size: 1.5rem;
-  }
-  .closeSidebar-btn {
-    font-size: 1.75rem;
-  }
-}
-@media screen and (min-width: 1240px) {
-  .sidebar-heading {
-    font-size: 1.75rem;
-  }
-  .closeSidebar-btn {
-    font-size: 2rem;
-  }
 }
 
 /* ==============
@@ -281,7 +245,7 @@ body {
   top: 80px;
   left: 10px;
   z-index: -1;
-  transition: all 50ms linear;
+  transition: var(--transition-fast);
 }
 
 .ham-btn:active {
@@ -310,7 +274,7 @@ body {
   left: 0%;
   width: 100%;
   min-height: 85vh;
-  transition: all 200ms linear;
+  transition: var(--transition-slow);
   padding: 0.5rem;
 }
 .home-header {
@@ -336,7 +300,7 @@ body {
   padding: 0 1rem;
 }
 .home-title {
-  color: var(--text-black-700);
+  color: var(--text-black-900);
   font-size: 1.5rem;
 }
 .card {
@@ -345,16 +309,15 @@ body {
   height: 250px;
   border-radius: 8px;
   margin-bottom: 20px;
-  color: #000;
+  color: var(--text-black-900);
 }
 
 .new-note {
-  background: #fff7cc;
+  background: var(--accent-color-secondary);
   display: flex;
   justify-content: center;
   align-items: center;
-  color: black;
-  transition: all 100ms linear;
+  transition: var(--transition-medium);
   font-size: 3rem;
 }
 
@@ -365,12 +328,12 @@ body {
 .note {
   display: flex;
   flex-direction: column;
-  transition: all 100ms linear;
+  transition: var(--transition-medium);
 }
 
 .note:hover,
 .new-note:hover {
-  box-shadow: 0 0 4px #00000083;
+  box-shadow: var(--shadow-dark);
 }
 .new-note:active {
   transform: scale(0.99);
@@ -384,12 +347,12 @@ body {
   justify-content: center;
   width: 100%;
   height: 60%;
-  background-color: #ddebff;
+  background-color: var(--secondary-color-blue);
   border-radius: 10px 10px 0 0;
 }
 
 .note-img-lines {
-  background-color: #000;
+  background-color: var(--text-black-900);
   margin-bottom: 15px;
   width: 80%;
   height: 1px;
@@ -399,7 +362,7 @@ body {
   padding: 0.2rem 0.5rem 0.4rem 0.5rem;
   width: 100%;
   height: 40%;
-  background-color: #fff7cc;
+  background-color: var(--accent-color-secondary);
   border-radius: 0 0 10px 10px;
   display: flex;
   flex-direction: column;
@@ -418,7 +381,6 @@ body {
 
 .note-description {
   font-size: 0.66rem;
-  /* height: 35%; */
 }
 
 .created-date {
@@ -460,48 +422,25 @@ body {
 }
 
 .deleteNote-btn {
-  color: #bb2525;
+  color: var(--red);
 }
 
 .action-btns:hover {
-  box-shadow: 0px 0px 3px #2d2b365e;
+  box-shadow: var(--shadow-dark);
 }
 .action-btns:active {
   transform: scale(0.95);
   box-shadow: none;
 }
 
-@media screen and (min-width: 640px) {
-  .ham-btn {
-    display: flex;
-  }
-  .sm-ham {
-    display: none;
-  }
-  .home-container {
-    width: 80%;
-    left: 20%;
-  }
-  .home-container-closed-sidebar {
-    left: 10%;
-  }
-}
-
 /* ==============
   add note page styles
   ==============*/
-
-:root {
-  --primaryFont: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-  --clearTransition: all 100ms linear;
-}
 
 .addNote-container {
   height: 88vh;
   position: relative;
   top: 70px;
-  /* border: 2px solid black; */
 }
 
 .buttons {
@@ -509,7 +448,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--clearTransition);
+  transition: var(--transition-slow);
 }
 
 .btn {
@@ -518,26 +457,25 @@ body {
   width: fit-content;
   padding: 0.25rem 0.8rem;
   border-radius: 8px;
-  background-color: #ffe143;
+  background-color: var(--accent-color-primary);
   font-weight: bold;
-  box-shadow: 0 0 2px #000;
-  color: #504e70;
-  transition: var(--clearTransition);
+  box-shadow: var(--shadow-dark);
+  color: var(--text-black-900);
+  transition: var(--transition-slow);
 }
 
 .btn:active {
   transform: scale(0.95);
-  box-shadow: 0 0 1px #000;
+  box-shadow: var(--shadow-dark);
 }
 
 .input-section {
-  /* border: 2px solid black; */
   border-radius: 10px;
   width: 90%;
   margin: auto;
   padding: 2rem 1rem;
   min-height: 80%;
-  background-color: #f4f7ff;
+  background-color: var(--bg-white-100);
 }
 
 .heading {
@@ -550,20 +488,19 @@ body {
 
 .inps,
 .noteContent {
-  /* border: 1px solid #000; */
   border: none;
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
+  box-shadow: var(--shadow-dark);
   padding: 0.6rem 0.4rem;
   outline: none;
   border-radius: 5px;
   font-size: 1.1rem;
-  transition: all 50ms linear;
+  transition: var(--transition-fast);
   letter-spacing: 1px;
 }
 
 .inps:focus,
 .noteContent:focus {
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.607);
+  box-shadow: var(--shadow-dark);
 }
 .inps::placeholder,
 .noteContent::placeholder {
@@ -587,42 +524,6 @@ body {
   min-height: 300px;
 }
 
-@media screen and (min-width: 750px) {
-  .buttons {
-    padding: 0.5rem 5rem;
-  }
-  .input-section {
-    width: 75%;
-    padding: 2rem 3rem;
-  }
-}
-@media screen and (min-width: 480px) {
-  .heading {
-    flex-direction: row;
-  }
-
-  .inps,
-  .noteContent {
-    /* border: 1px solid #000; */
-    border: none;
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.607);
-    padding: 0.3rem 0.5rem;
-    outline: none;
-    border-radius: 3px;
-    font-size: 1.05rem;
-    transition: all 50ms linear;
-  }
-
-  .noteTitle {
-    width: 69%;
-    margin-bottom: 0;
-  }
-
-  .noteCategory {
-    width: 30.5%;
-  }
-}
-
 /* 
     ===============
     classes for user while writing
@@ -630,23 +531,23 @@ body {
   */
 .buttons-hidden {
   visibility: hidden;
-  transition: var(--clearTransition);
+  transition: var(--transition-slow);
 }
 
 .input-section-transparent {
   background-color: #fff;
-  transition: var(--clearTransition);
+  transition: var(--transition-slow);
 }
 
 .inps-writing,
 .noteContent-writing {
   box-shadow: none;
-  transition: var(--clearTransition);
+  transition: var(--transition-slow);
 }
 .inps-writing:focus,
 .noteContent-writing:focus {
   box-shadow: none;
-  transition: var(--clearTransition);
+  transition: var(--transition-slow);
 }
 
 /* ==============
@@ -674,19 +575,99 @@ body {
   justify-content: center;
   align-items: center;
   min-width: fit-content;
-  width: 25%;
+  width: 90%;
   right: 1.2rem;
   height: 40px;
   position: fixed;
   font-weight: bold;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 0 12px #00000081;
+  box-shadow: var(--shadow-wide);
   padding: 0 0.5rem;
 }
 
-@media screen and (max-width: 640px) {
+/* ==========
+    Media queries
+  ========== */
+
+@media screen and (min-width: 480px) {
+  .heading {
+    flex-direction: row;
+  }
+
+  .inps,
+  .noteContent {
+    border: none;
+    box-shadow: var(--shadow-light);
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border-radius: 3px;
+    font-size: 1.05rem;
+    transition: var(--transition-fast);
+  }
+
+  .noteTitle {
+    width: 69%;
+    margin-bottom: 0;
+  }
+
+  .noteCategory {
+    width: 30.5%;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .header {
+    padding: 0 3rem;
+  }
+
   .alert-box {
-    width: 90%;
+    width: 25%;
+  }
+
+  .sidebar {
+    width: 20%;
+    background-color: var(--accent-color-secondary);
+  }
+
+  .ham-btn {
+    display: flex;
+  }
+  .sm-ham {
+    display: none;
+  }
+  .home-container {
+    width: 80%;
+    left: 20%;
+  }
+  .home-container-closed-sidebar {
+    left: 10%;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .buttons {
+    padding: 0.5rem 5rem;
+  }
+  .input-section {
+    width: 75%;
+    padding: 2rem 3rem;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .sidebar-heading {
+    font-size: 1.5rem;
+  }
+  .closeSidebar-btn {
+    font-size: 1.75rem;
+  }
+}
+@media screen and (min-width: 1240px) {
+  .sidebar-heading {
+    font-size: 1.75rem;
+  }
+  .closeSidebar-btn {
+    font-size: 2rem;
   }
 }

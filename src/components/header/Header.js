@@ -12,14 +12,12 @@ const Header = () => {
   };
 
   return (
-    <div className={`${writing ? "header header-hidden" : "header "}`}>
+    <header className={`${writing ? "header header-hidden" : "header "}`}>
       <div className="logo">
         <a href="/">
           {/* <i class="bx bxs-book logo-icon"></i> CDNs are not good at production level */}
           <FaBook className="logo-icon" />
-          <p>
-            <span>N</span>otes PW
-          </p>
+          <span>N</span>otes PW
         </a>
       </div>
       <div className="search-bar">
@@ -42,7 +40,7 @@ const Header = () => {
           <FaSearch />
         </button>
       </div>
-    </div>
+    </header>
   );
 };
 
