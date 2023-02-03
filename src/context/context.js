@@ -23,7 +23,6 @@ const AppProvider = ({ children }) => {
 
   // reducer function for state
   const defaultState = {
-    loading: false,
     noteList: noteListFromLocalstorage(),
     categories: [],
     titleValue: "",

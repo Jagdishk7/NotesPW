@@ -128,6 +128,9 @@ export const reducer = (state, action) => {
       return {
         ...state,
         filteredNotes: state.noteList,
+        showAlert: true,
+        alertMsg: `Showing all notes`,
+        alertBg: "#ddebff",
       };
     } else {
       const filtered = state.noteList.filter(
@@ -136,6 +139,9 @@ export const reducer = (state, action) => {
       return {
         ...state,
         filteredNotes: filtered,
+        showAlert: true,
+        alertMsg: `Showing notes of category: ${payload}`,
+        alertBg: "#ddebff",
       };
     }
   }

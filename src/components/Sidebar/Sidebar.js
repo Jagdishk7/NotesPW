@@ -20,7 +20,16 @@ const Sidebar = () => {
 
   const categoryList = categories.map((category, i) => (
     <li
-      onClick={() => dispatch({ type: "FILTER_NOTES", payload: category })}
+      onClick={() => {
+        if (window.innerWidth < "640") {
+          return (
+            dispatch({ type: "FILTER_NOTES", payload: category }),
+            dispatch({ type: "CLOSE_SIDEBAR" })
+          );
+        } else {
+          return dispatch({ type: "FILTER_NOTES", payload: category });
+        }
+      }}
       key={i}
     >
       {category}
