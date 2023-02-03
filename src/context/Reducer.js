@@ -50,6 +50,8 @@ export const reducer = (state, action) => {
     };
   }
   if (type === "SET_CATEG_VALUE") {
+    if (payload === " ") {
+    }
     return {
       ...state,
       categValue: payload,
