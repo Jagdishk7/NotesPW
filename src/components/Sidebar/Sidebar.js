@@ -6,7 +6,12 @@ import {
   FaLinkedin,
   FaTimes,
   FaTwitter,
+  FaArrowAltCircleRight,
+  FaTelegram,
+  FaYoutube,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
+
 import { GlobalContext } from "../../context/context";
 
 const Sidebar = () => {
@@ -39,21 +44,71 @@ const Sidebar = () => {
       </section>
       {/* social media links. href note set yet. */}
       <footer className="social-icons">
-        <a href="/">
-          <FaTwitter />
-        </a>
-        <a href="/">
-          <FaLinkedin />
-        </a>
-        <a href="/">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.facebook.com/pwskills"
+          className="pw-social"
+        >
           <FaFacebook />
         </a>
-        <a href="/">
-          <FaDiscord />
-        </a>
-        <a href="/">
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.instagram.com/pwcollegewallah/"
+          className="pw-social"
+        >
           <FaInstagram />
         </a>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://t.me/SkillsPW"
+          className="pw-social"
+        >
+          <FaTelegram />
+        </a>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.youtube.com/channel/UCDrf0V4fcBr5FlCtKwvpfwA"
+          className="pw-social"
+        >
+          <FaYoutube />
+        </a>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://twitter.com/pw__skills"
+          className="pw-social"
+        >
+          <FaTwitter />
+        </a>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://www.linkedin.com/company/ineuron-ai/"
+          className="pw-social"
+        >
+          <FaLinkedin />
+        </a>
+
+        <a
+          target="_blank"
+          rel="noreferrer"
+          href="https://discord.com/channels/1029814289420271789/1030556431914643498"
+          className="pw-social"
+        >
+          <FaDiscord />
+        </a>
+
+        <Link
+          to="/about"
+          className="about-link pw-social"
+          title="About creators"
+        >
+          <FaArrowAltCircleRight />
+        </Link>
       </footer>
     </div>
   );
