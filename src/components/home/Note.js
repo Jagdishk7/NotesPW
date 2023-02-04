@@ -5,26 +5,6 @@ import { GlobalContext } from "../../context/context";
 
 const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
   const { dispatch } = GlobalContext();
-  const noteTitleShrinker = (title) => {
-    const noteTitleArr = title.split("");
-
-    if (noteTitleArr.length > "14") {
-      let titleShorter = noteTitleArr.slice(0, 15).join("");
-      return titleShorter + "... ";
-    } else {
-      return title;
-    }
-  };
-
-  const noteDescMaker = (content) => {
-    const noteDescArr = content.split("");
-    if (noteDescArr.length > "85") {
-      let noteDesc = noteDescArr.slice(0, 85).join("");
-      return noteDesc + "...";
-    } else {
-      return content;
-    }
-  };
 
   return (
     <div className="note card" title={`Title: ${noteTitle}`}>
@@ -45,13 +25,27 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
         {/* ========== Note About ========== */}
         <header className="row noteHeader">
           <div className="note-title">
-            <strong>{noteTitleShrinker(noteTitle)}</strong>
+            {/* <strong>{noteTitleShrinker(noteTitle)}</strong> */}
+            <strong>
+              {noteTitle.length > "14"
+                ? noteTitle.split("").slice(0, 14).join("").trim() + "..."
+                : noteTitle}
+            </strong>
           </div>
           <div className="note-category">
-            <em>*{noteCategory}</em>
+            <em>
+              *
+              {noteCategory.length > "10"
+                ? noteCategory.split("").slice(0, 10).join("").trim() + "..."
+                : noteCategory}
+            </em>
           </div>
         </header>
-        <div className="note-description">{noteDescMaker(noteContent)}</div>
+        <div className="note-description">
+          {noteContent.length > "85"
+            ? noteContent.split("").slice(0, 85).join("").trim() + "..."
+            : noteContent}
+        </div>
         <div className="row">
           {/* changed from btn to link so we can navigate to detail pages */}
           <div className="created-date">

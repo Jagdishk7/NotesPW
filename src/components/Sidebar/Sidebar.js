@@ -31,8 +31,11 @@ const Sidebar = () => {
         }
       }}
       key={i}
+      title={category}
     >
-      {category}
+      {category.length > "15"
+        ? category.split("").slice(0, 15).join("").trim() + "..."
+        : category}
     </li>
   ));
 

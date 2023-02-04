@@ -50,7 +50,9 @@ export const reducer = (state, action) => {
     };
   }
   if (type === "SET_CATEG_VALUE") {
+    console.log(action.key);
     if (payload === " ") {
+      console.log("space printed");
     }
     return {
       ...state,
@@ -138,11 +140,15 @@ export const reducer = (state, action) => {
       const filtered = state.noteList.filter(
         (note) => note.noteCategory === payload
       );
+      const payLoadForMsg =
+        payload.length > 15
+          ? payload.split("").slice(0, 15).join("").trim() + "..."
+          : payload;
       return {
         ...state,
         filteredNotes: filtered,
         showAlert: true,
-        alertMsg: `Showing notes of category: ${payload}`,
+        alertMsg: `Showing notes of category: ${payLoadForMsg}`,
         alertBg: "#ddebff",
       };
     }
