@@ -1,10 +1,10 @@
 import React from "react";
-import Note from "./Note";
+import Note from "../components/Note";
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar/Sidebar";
-import { GlobalContext } from "../../context/context";
+import Sidebar from "../components/Sidebar";
+import { GlobalContext } from "../context/context";
 import { FaBars, FaPlus } from "react-icons/fa";
-import Alert from "../Alert/Alert";
+import Alert from "../components/Alert";
 
 const Home = () => {
   // bringing all required states from context.

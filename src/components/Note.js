@@ -1,7 +1,7 @@
 import React from "react";
 import { FaEdit, FaRegCalendarAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GlobalContext } from "../../context/context";
+import { GlobalContext } from "../context/context";
 
 const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
   const { dispatch } = GlobalContext();

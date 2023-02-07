@@ -1,6 +1,6 @@
 import React from "react";
 import { FaBook, FaSearch } from "react-icons/fa";
-import { GlobalContext } from "../../context/context";
+import { GlobalContext } from "../context/context";
 
 const Header = () => {
   const { state, dispatch } = GlobalContext();

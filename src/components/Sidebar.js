@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-import { GlobalContext } from "../../context/context";
+import { GlobalContext } from "../context/context";
 
 const Sidebar = () => {
   const { state, dispatch } = GlobalContext();

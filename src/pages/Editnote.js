@@ -2,13 +2,21 @@ import React from "react";
 import { useEffect } from "react";
 import { FaArrowLeft, FaSave } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GlobalContext } from "../../context/context";
+import { GlobalContext } from "../context/context";
+import { useParams } from "react-router-dom";
 
-const AddNote = () => {
+const Editnote = () => {
   // imported required states and function from context
   const { state, dispatch } = GlobalContext();
-
   const { writing, titleValue, categValue, contentValue, date } = state;
+
+  const { id } = useParams();
+
+  const editNote = (id) => dispatch({ type: "EDIT_NOTE", payload: id });
+
+  useEffect(() => {
+    editNote(id);
+  }, [id]);
 
   // It shows all the header and background when the mouse moves
   useEffect(() => {
@@ -96,4 +104,4 @@ const AddNote = () => {
   );
 };
 
-export default AddNote;
+export default Editnote;
