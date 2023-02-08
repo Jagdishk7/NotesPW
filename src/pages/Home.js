@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Note from "../components/Note";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
@@ -39,6 +39,10 @@ const Home = () => {
   const closeAlert = () => {
     dispatch({ type: "CLOSE_ALERT" });
   };
+
+  useEffect(() => {
+    dispatch({ type: "SET_NOTES_BACK" });
+  }, []);
 
   return (
     <>

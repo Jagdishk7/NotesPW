@@ -84,6 +84,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         noteList: edited,
+        filteredNotes: [],
         titleValue: "",
         categValue: "",
         contentValue: "",
@@ -131,7 +132,7 @@ export const reducer = (state, action) => {
     if (payload === "All notes") {
       return {
         ...state,
-        filteredNotes: state.noteList,
+        filteredNotes: [],
         showAlert: true,
         alertMsg: `Showing all notes`,
         alertBg: "#ddebff",
@@ -203,6 +204,13 @@ export const reducer = (state, action) => {
       searchedNoteArr: [],
       noteSearched: false,
       searchBarValue: "",
+    };
+  }
+
+  if (type === "SET_NOTES_BACK") {
+    return {
+      ...state,
+      filteredNotes: [],
     };
   }
 };
