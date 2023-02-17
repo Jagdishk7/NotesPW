@@ -3,12 +3,33 @@ import { useEffect } from "react";
 import { FaArrowLeft, FaSave } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/context";
+import Alert from "../components/Alert";
 
 const AddNote = () => {
   // imported required states and function from context
   const { state, dispatch } = GlobalContext();
 
-  const { writing, titleValue, categValue, contentValue, date } = state;
+  const {
+    writing,
+    titleValue,
+    categValue,
+    contentValue,
+    date,
+    alertBg,
+    alertMsg,
+    showAlert,
+  } = state;
+
+  const saveNote = () => {
+    return (
+      dispatch({ type: "CHECK_VALIDATION" }),
+      dispatch({ type: "SAVE_NOTE", payload: date })
+    );
+  };
+
+  const closeAlert = () => {
+    dispatch({ type: "CLOSE_ALERT" });
+  };
 
   // It shows all the header and background when the mouse moves
   useEffect(() => {
@@ -33,14 +54,18 @@ const AddNote = () => {
 
         {/* save button */}
         <Link
-          to="/"
+          to={`${(titleValue && contentValue && categValue) === "" ? "" : "/"}`}
           className="btn"
-          onClick={() => dispatch({ type: "SAVE_NOTE", payload: date })}
+          onClick={saveNote}
         >
           <FaSave />
           Save
         </Link>
       </div>
+
+      {showAlert && (
+        <Alert alertBg={alertBg} alertMsg={alertMsg} closeAlert={closeAlert} />
+      )}
 
       {/* input section */}
       <div

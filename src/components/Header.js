@@ -1,3 +1,4 @@
+import { computeHeadingLevel } from "@testing-library/react";
 import React from "react";
 import { FaBook, FaSearch } from "react-icons/fa";
 import { GlobalContext } from "../context/context";
@@ -11,6 +12,12 @@ const Header = () => {
     dispatch({ type: "SEARCH_NOTE", payload: searchBarValue });
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key == "Enter") {
+      dispatch({ type: "SEARCH_NOTE", payload: searchBarValue });
+    }
+  };
+
   return (
     <header className={`${writing ? "header header-hidden" : "header "}`}>
       <div className="logo">
@@ -22,6 +29,7 @@ const Header = () => {
       </div>
       <div className="search-bar">
         <input
+          title="Enter the note title to search"
           type="search"
           className="search"
           name=""
@@ -29,6 +37,7 @@ const Header = () => {
           placeholder="Search note by title"
           value={searchBarValue}
           required
+          onKeyPress={handleKeyPress}
           onChange={(e) =>
             dispatch({
               type: "SEARCH_BAR_VALUE_CHANGE",

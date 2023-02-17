@@ -3,8 +3,25 @@ import { FaEdit, FaRegCalendarAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GlobalContext } from "../context/context";
 
-const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
-  const { dispatch } = GlobalContext();
+const Note = ({
+  id,
+  noteTitle,
+  noteCategory,
+  noteContent,
+  createdAt,
+  areNotesFiltered,
+}) => {
+  const { state, dispatch } = GlobalContext();
+
+  const deleteNote = () => {
+    return (
+      dispatch({ type: "DELETE_NOTE", payload: id }),
+      dispatch({
+        type: "FILTER_NOTES_ON_DELETE",
+        payload: state.areNotesFiltered ? noteCategory : "All notes",
+      })
+    );
+  };
 
   return (
     <div className="note card" title={`Title: ${noteTitle}`}>
@@ -53,12 +70,17 @@ const Note = ({ id, noteTitle, noteCategory, noteContent, createdAt }) => {
             <span className="date"> : {createdAt}</span>
           </div>
           <div className="formatting-buttons">
-            <Link to={`/note/${id}`} className="select-btn action-btns">
+            <Link
+              to={`/note/${id}`}
+              className="select-btn action-btns"
+              title="Read / Edit"
+            >
               <FaEdit />
             </Link>
             <button
               className="deleteNote-btn action-btns"
-              onClick={() => dispatch({ type: "DELETE_NOTE", payload: id })}
+              onClick={deleteNote}
+              title="Delete"
             >
               <FaTrash />
             </button>

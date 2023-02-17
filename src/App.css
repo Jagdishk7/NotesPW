@@ -386,6 +386,10 @@ body {
   height: 1px;
 }
 
+.note-img-lines:nth-child(2n) {
+  width: 70%;
+}
+
 .note-about {
   padding: 0.2rem 0.5rem 0.4rem 0.5rem;
   width: 100%;
@@ -610,7 +614,7 @@ body {
   font-weight: bold;
   text-align: center;
   border-radius: 3px;
-  box-shadow: var(--shadow-wide);
+  box-shadow: var(--shadow-light);
   padding: 0 0.5rem;
 }
 

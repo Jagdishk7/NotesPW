@@ -22,13 +22,42 @@ export const reducer = (state, action) => {
     };
   }
   if (type === "DELETE_NOTE") {
-    const filteredNotes = state.noteList.filter((note) => note.id !== payload);
+    const filteredNoteList = state.noteList.filter(
+      (note) => note.id !== payload
+    );
+
+    if (state.noteSearched) {
+      const filteredSearchedNoteList = state.searchedNoteArr.filter(
+        (note) => note.id !== payload
+      );
+      if (filteredSearchedNoteList.length < 1) {
+        return {
+          ...state,
+          noteList: filteredNoteList,
+          searchedNoteArr: filteredSearchedNoteList,
+          searchBarValue: "",
+          noteSearched: false,
+          showAlert: true,
+          alertMsg: "Note deleted successfully",
+          alertBg: "#f5c2c7",
+        };
+      }
+      return {
+        ...state,
+        noteList: filteredNoteList,
+        searchedNoteArr: filteredSearchedNoteList,
+        showAlert: true,
+        alertMsg: "Note deleted successfully",
+        alertBg: "#f5c2c7",
+      };
+    }
+
     return {
       ...state,
-      noteList: filteredNotes,
+      noteList: filteredNoteList,
       showAlert: true,
       alertMsg: "Note deleted successfully",
-      alertBg: "#ff8080",
+      alertBg: "#f5c2c7",
     };
   }
   if (type === "CLEAR_PAGE") {
@@ -50,10 +79,6 @@ export const reducer = (state, action) => {
     };
   }
   if (type === "SET_CATEG_VALUE") {
-    console.log(action.key);
-    if (payload === " ") {
-      console.log("space printed");
-    }
     return {
       ...state,
       categValue: payload,
@@ -120,6 +145,20 @@ export const reducer = (state, action) => {
       }
     }
   }
+  if (type === "CHECK_VALIDATION") {
+    console.log("validation checked");
+    if ((state.titleValue && state.categValue && state.contentValue) == "") {
+      return {
+        ...state,
+        showAlert: true,
+        alertMsg: "Provide proper information to save note.",
+        alertBg: "#f5c2c7",
+      };
+    }
+    return {
+      ...state,
+    };
+  }
   if (type === "SET_CATEGORY_LIST") {
     const categoryArr = state.noteList.map((note) => note.noteCategory);
     const categoriesSet = Array.from(new Set(["All notes", ...categoryArr]));
@@ -133,6 +172,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         filteredNotes: [],
+        areNotesFiltered: false,
         showAlert: true,
         alertMsg: `Showing all notes`,
         alertBg: "#ddebff",
@@ -148,9 +188,32 @@ export const reducer = (state, action) => {
       return {
         ...state,
         filteredNotes: filtered,
+        areNotesFiltered: true,
         showAlert: true,
         alertMsg: `Showing notes of category: ${payLoadForMsg}`,
-        alertBg: "#ddebff",
+        alertBg: "#70db70",
+      };
+    }
+  }
+  if (type === "FILTER_NOTES_ON_DELETE") {
+    if (payload === "All notes") {
+      return {
+        ...state,
+        filteredNotes: [],
+        showAlert: true,
+        alertMsg: `Note deleted successfully`,
+        alertBg: "#f5c2c7",
+      };
+    } else {
+      const filtered = state.noteList.filter(
+        (note) => note.noteCategory === payload
+      );
+      return {
+        ...state,
+        filteredNotes: filtered,
+        showAlert: true,
+        alertMsg: `Note deleted successfully.`,
+        alertBg: "#f5c2c7",
       };
     }
   }
@@ -177,7 +240,7 @@ export const reducer = (state, action) => {
         ...state,
         showAlert: true,
         alertMsg: `Enter a value to search`,
-        alertBg: "#ff8080",
+        alertBg: "#f5c2c7",
       };
     }
     const searchedNotes = state.noteList.filter(
@@ -187,8 +250,9 @@ export const reducer = (state, action) => {
       return {
         ...state,
         showAlert: true,
-        alertMsg: `No item matched with "${payload}"`,
-        alertBg: "#ff8080",
+        noteSearched: false,
+        alertMsg: `No note found with title: '${payload}'`,
+        alertBg: "#f5c2c7",
         searchBarValue: "",
       };
     }
