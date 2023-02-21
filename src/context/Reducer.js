@@ -118,6 +118,8 @@ export const reducer = (state, action) => {
         showAlert: true,
         alertMsg: "Note edited",
         alertBg: "#70db70",
+        noteSearched: false,
+        areNotesFiltered: false,
       };
     } else {
       const { titleValue, categValue, contentValue } = state;
@@ -139,6 +141,8 @@ export const reducer = (state, action) => {
           showAlert: true,
           alertMsg: "New note added",
           alertBg: "#70db70",
+          noteSearched: false,
+          areNotesFiltered: false,
         };
       } else {
         return { ...state };
@@ -147,7 +151,7 @@ export const reducer = (state, action) => {
   }
   if (type === "CHECK_VALIDATION") {
     console.log("validation checked");
-    if ((state.titleValue && state.categValue && state.contentValue) == "") {
+    if ((state.titleValue && state.categValue && state.contentValue) === "") {
       return {
         ...state,
         showAlert: true,
